@@ -15,6 +15,10 @@ export const LoginPage = () => {
     mode: "onChange",
   });
 
+  const onSubmit = async(data) => {
+    
+  }
+
   const [errMsg, setErrMsg] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const dispatch = useDispatch();
@@ -35,7 +39,7 @@ export const LoginPage = () => {
             Login to your account
           </p>
           <span className="text-sm mt-2 text-ascent-2">Welcome Back!</span>
-          <form className="py-8 flex flex-col gap-5">
+          <form className="py-8 flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
             <TextInput
               name="email"
               placeholder="email@example.com"

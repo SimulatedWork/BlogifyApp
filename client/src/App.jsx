@@ -2,7 +2,7 @@ import { Outlet, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import { LoginPage } from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
-import RegisterPage from "./pages/RegisterPage";
+import {RegisterPage} from "./pages/RegisterPage";
 import ResetPassword from "./pages/ResetPassword";
 import { useSelector } from "react-redux";
 
