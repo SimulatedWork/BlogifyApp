@@ -10,6 +10,7 @@ export const RegisterPage = () => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm({
     mode: "onChange",
@@ -78,24 +79,41 @@ export const RegisterPage = () => {
               labelStyles="ml-2"
               error={errors.email ? errors.email.message : ""}
             />
-            <TextInput
-              name="password"
-              placeholder="Password"
-              label="Password"
-              type="password"
-              register={register("password", {
-                required: "password is required",
-              })}
-              styles="w-full rounded-full"
-              labelStyles="ml-2"
-              error={errors.password ? errors.password.message : ""}
-            />
-            <Link
-              to="/reset-password"
-              className="text-sm text-right text-blue font-semibold"
-            >
-              Forgot Password ?
-            </Link>
+            <div className="w-full flex flex-col lg:flex-row gap-1 md:gap-2">
+              <TextInput
+                name="password"
+                placeholder="Password"
+                label="Password"
+                type="password"
+                register={register("password", {
+                  required: "password is required",
+                })}
+                styles="w-full rounded-full"
+                labelStyles="ml-2"
+                error={errors.password ? errors.password.message : ""}
+              />
+              <TextInput
+                label="Confirm Password"
+                placeholder="Password"
+                type="password"
+                register={register("cPassword", {
+                  validate: (value) => {
+                    const { password } = getValues();
+
+                    if (password != value) {
+                      return "Passwords do not match";
+                    }
+                  },
+                })}
+                styles="w-full rounded-full"
+                labelStyles="ml-2"
+                error={
+                  errors.cPassword && errors.cPassword.type === "validate"
+                    ? errors.cPassword?.message
+                    : ""
+                }
+              />
+            </div>
 
             {errMsg?.message && (
               <span
